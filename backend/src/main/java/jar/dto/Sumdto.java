@@ -6,6 +6,4 @@ public class Sumdto {
         String msg="sum api end point";
         int result=0;
         int status=200;
-
-
 }
