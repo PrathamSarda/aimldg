@@ -1,6 +1,5 @@
 package jar.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jar.model.Student;
-import jar.repo.StudentRepo;
+import jar.service.Cservice;
 
 
 @RestController
@@ -20,26 +19,14 @@ import jar.repo.StudentRepo;
 public class Create {
 
     @Autowired
-    StudentRepo db;
+    Cservice obj;
 
     @PostMapping("/create" )
+    
     public Map<Object, Object> create(@RequestBody Student d) {
-
-        Map<Object, Object> res = new HashMap<>();
-
-        Student s = new Student();
-        s.setName(d.getName());
-        s.setEmail(d.getEmail());
-        s.setIp(d.getIp());
-
-        db.save(s);
-
-        res.put("msg", "Student Added Successfully");
-        res.put("status", 201);
-        res.put("data", s);
-
-        return res;
+        return obj.create(d);
     }
     
-    
 }
+
+
